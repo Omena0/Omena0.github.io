@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
+body {
+  background-image: url('https://media.discordapp.net/attachments/1013038921740988467/1026903334965227652/mc.png?width=1246&height=701');
+  color: black;
+  font-family: Ubuntu;
+  text-align: center;
+} 
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #232f3e;
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 4px #000000;
+}
