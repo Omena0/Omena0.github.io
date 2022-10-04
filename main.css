@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
 body {
   background-image: url('https://media.discordapp.net/attachments/1013038921740988467/1026903334965227652/mc.png?width=1246&height=701');
-  color: black;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  color: white;
   font-family: Ubuntu;
   text-align: center;
 } 
