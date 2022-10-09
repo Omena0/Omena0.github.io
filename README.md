@@ -1,5 +1,5 @@
 # Website
 
-Im bad at html so ill just let ***you*** do the work lmao
+I did this website in Nicepage since im terrible with coding
 
-Thanks to ItsMeDuck because he knows html
+ItsMeDuck did the temporary website
