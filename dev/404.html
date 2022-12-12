@@ -2,13 +2,50 @@
 
 <meta name="robots" content="noindex">
 
+<style>
+    .title {
+      font-size: 200%;
+      text-align: center;
+    }
+    .text {
+      font-size: 125%;
+      text-align: center;
+    }
+    .button {
+        display: block;
+        width: 100%;
+        border: none;
+        border-width: 10px;
+        border-color: black;
+        border-radius: 100%;
+        color:black;
+        padding: 14px 28px;
+        font-size: xx-large;
+        text-align: center;
+        cursor:pointer
+    }
+    </style>
+
 <html>
     <head>
-        <h1>
-            404 - Not found
-        </h1>
-        <h2>
-            This page doesent exist! Did you type the url correctly?
-        </h2>
+        <div class="title">
+            <h1>
+                404 - Not found
+            </h1>
+        </div>
+        <div class="text">
+            <h2>
+                This page doesent exist!
+                <br>
+                Did you type the url correctly?
+            </h2>
+        </div>
+        <div class="button">
+            <form>
+                <button class="button" formaction="../index.html" formmethod="get">Go to home</button>
+            </form>
+            <br>
+            
+        </div>
     </head>
 </html>
