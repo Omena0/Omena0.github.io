@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omena0 — GitHub Portfolio</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Omena0's developer portfolio — open-source projects, tools, and experiments.">
+  <meta name="author" content="Omena0">
+  <meta name="keywords" content="Omena0, developer, portfolio, GitHub, open source">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://omena0.github.io/">
+
+  <!-- Open Graph / Discord -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://omena0.github.io/">
+  <meta property="og:title" content="Omena0 — GitHub Portfolio">
+  <meta property="og:description" content="Open-source projects, tools, and experiments by Omena0.">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/Omena0">
+  <meta property="og:site_name" content="Omena0">
+  <meta name="theme-color" content="#0d1117">
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Omena0 — GitHub Portfolio">
+  <meta name="twitter:description" content="Open-source projects, tools, and experiments by Omena0.">
+
+  <!-- Dark Reader hint -->
+  <meta name="color-scheme" content="dark">
+  <meta name="darkreader-lock">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      color-scheme: dark;
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #abb5c1;
+      --accent: #58a6ff;
+      --accent-hover: #79c0ff;
+      --badge-bg: #1f2937;
+      --pin-glow: #58a6ff22;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--accent-hover); }
+
+    /* ---- Header / Profile ---- */
+    .profile {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .profile img {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+    }
+    .profile-info h1 { font-size: 1.6rem; font-weight: 600; }
+    .profile-info p { color: var(--text-muted); margin-top: .25rem; }
+    .profile-info .bio { color: var(--text); margin-top: .5rem; }
+    .profile-links { display: flex; gap: .75rem; margin-top: .5rem; flex-wrap: wrap; }
+    .profile-links a {
+      font-size: .85rem;
+      padding: .3rem .7rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: background .2s, border-color .2s;
+    }
+    .profile-links a:hover { background: var(--surface); border-color: var(--accent); }
+
+    /* ---- Section ---- */
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 2rem;
+    }
+    .section h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .section h2 .icon { font-size: 1.1rem; }
+
+    /* ---- Repo grid ---- */
+    .repo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .repo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.15rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .repo-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 12px var(--pin-glow);
+    }
+    .repo-card.pinned {
+      border-color: #58a6ff55;
+      box-shadow: 0 0 8px var(--pin-glow);
+    }
+    .repo-card .name {
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .repo-card .name .pin-badge {
+      font-size: .65rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--accent);
+      background: var(--badge-bg);
+      padding: .15rem .45rem;
+      border-radius: 4px;
+    }
+    .repo-card .desc {
+      color: var(--text-muted);
+      font-size: .875rem;
+      flex: 1;
+    }
+    .repo-card .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      font-size: .8rem;
+      color: var(--text-muted);
+      align-items: center;
+    }
+    .repo-card .meta .lang-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .repo-card .meta span { display: flex; align-items: center; gap: .25rem; }
+
+    /* ---- Loading / Error ---- */
+    .loading, .error {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-muted);
+    }
+    .error { color: #f85149; }
+
+    .spinner {
+      width: 32px; height: 32px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+      margin: 0 auto 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ---- README ---- */
+    .readme-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      overflow: auto;
+    }
+    .readme-card h1, .readme-card h2, .readme-card h3,
+    .readme-card h4, .readme-card h5, .readme-card h6 {
+      margin-top: 1.2em; margin-bottom: .5em; font-weight: 600;
+      border-bottom: 1px solid var(--border); padding-bottom: .3em;
+      color: var(--text);
+    }
+    .readme-card h1 { font-size: 2em; }
+    .readme-card h2 { font-size: 1.5em; }
+    .readme-card h3 { font-size: 1.25em; }
+    .readme-card h4 { font-size: 1em; }
+    .readme-card h5 { font-size: .875em; }
+    .readme-card h6 { font-size: .85em; }
+    .readme-card h1:first-child, .readme-card h2:first-child { margin-top: 0; }
+    .readme-card p { margin: .6em 0; }
+    .readme-card img { max-width: 100%; border-radius: 6px; }
+    .readme-card a { color: var(--accent); }
+    .readme-card code {
+      background: var(--bg); padding: .15em .4em; border-radius: 4px;
+      font-size: .9em;
+    }
+    .readme-card pre {
+      background: var(--bg); padding: 1em; border-radius: 6px;
+      overflow-x: auto; margin: .8em 0;
+    }
+    .readme-card pre code { background: none; padding: 0; }
+    .readme-card ul, .readme-card ol { padding-left: 1.5em; margin: .5em 0; }
+    .readme-card blockquote {
+      border-left: 3px solid var(--accent); padding-left: 1em;
+      color: var(--text-muted); margin: .8em 0;
+    }
+    .readme-card table {
+      border-collapse: collapse; width: 100%; margin: .8em 0;
+    }
+    .readme-card th, .readme-card td {
+      border: 1px solid var(--border); padding: .5em .75em; text-align: left;
+    }
+    .readme-card th { background: var(--bg); }
+    .readme-card hr { border: none; border-top: 1px solid var(--border); margin: 1.2em 0; }
+
+    /* ---- Footer ---- */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-muted);
+      font-size: .8rem;
+    }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 600px) {
+      .profile { flex-direction: column; text-align: center; padding-top: 2rem; }
+      .profile-links { justify-content: center; }
+      .repo-grid { grid-template-columns: 1fr; }
+      .readme-card { padding: 1rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="profile" id="profile">
+    <img id="avatar" alt="Omena0 avatar" src="">
+    <div class="profile-info">
+      <h1 id="displayName">Omena0</h1>
+      <p id="username">@Omena0</p>
+      <p class="bio" id="bio"></p>
+      <div class="profile-links" id="profileLinks"></div>
+    </div>
+  </header>
+
+  <section class="section" id="readmeSection" style="display:none">
+    <h2>About Me</h2>
+    <div class="readme-card" id="readmeContent"></div>
+  </section>
+
+  <section class="section" id="pinnedSection" style="display:none">
+    <h2>Pinned</h2>
+    <div class="repo-grid" id="pinnedGrid"></div>
+  </section>
+
+  <section class="section" id="repoSection">
+    <h2>Repositories</h2>
+    <div id="repoContent">
+      <div class="loading"><div class="spinner"></div>Loading repositories&hellip;</div>
+    </div>
+  </section>
+
+  <footer>
+    Built with the GitHub API &middot; <a href="https://github.com/Omena0">github.com/Omena0</a>
+  </footer>
+
+<script>
+  const GH_USER = 'Omena0';
+
+  // Add your pinned repo names here (must match exact GitHub repo names)
+  const PINNED_REPOS = ['PyJavaBridge', 'fr', 'http', 'SRP'];
+
+  // GitHub language colors (common subset)
+  const langColors = {
+    JavaScript:'#f1e05a', TypeScript:'#3178c6', Python:'#3572A5', Java:'#b07219',
+    'C++':'#f34b7d', C:'#555555', 'C#':'#178600', Go:'#00ADD8', Rust:'#dea584',
+    Ruby:'#701516', PHP:'#4F5D95', Shell:'#89e051', HTML:'#e34c26', CSS:'#563d7c',
+    Lua:'#000080', Kotlin:'#A97BFF', Swift:'#F05138', Dart:'#00B4AB',
+    Vue:'#41b883', SCSS:'#c6538c', Makefile:'#427819', Batchfile:'#C1F12E',
+    PowerShell:'#012456', Dockerfile:'#384d54', Nix:'#7e7eff', Zig:'#ec915c',
+    AutoHotkey:'#6594b9', GDScript:'#355570',
+  };
+
+  async function fetchJSON(url) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+    return res.json();
+  }
+
+  // Fetch profile README (Omena0/Omena0 repo) as rendered HTML
+  async function fetchProfileReadme() {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_USER}/readme`, {
+        headers: { Accept: 'application/vnd.github.html' }
+      });
+      if (!res.ok) return null;
+      return await res.text();
+    } catch {
+      return null;
+    }
+  }
+
+  function buildCard(repo, pinned) {
+    const card = document.createElement('a');
+    card.className = 'repo-card' + (pinned ? ' pinned' : '');
+    card.href = repo.html_url;
+    card.target = '_blank';
+    card.rel = 'noopener';
+
+    const langDot = repo.language
+      ? `<span class="lang-dot" style="background:${langColors[repo.language] || '#8b949e'}"></span> ${repo.language}`
+      : '';
+
+    card.innerHTML = `
+      <div class="name">
+        ${repo.name}
+        ${pinned ? '<span class="pin-badge">pinned</span>' : ''}
+      </div>
+      <div class="desc">${repo.description || '<em>No description</em>'}</div>
+      <div class="meta">
+        ${langDot ? `<span>${langDot}</span>` : ''}
+        ${repo.stargazers_count ? `<span>&#11088; ${repo.stargazers_count}</span>` : ''}
+        ${repo.forks_count ? `<span>&#127860; ${repo.forks_count}</span>` : ''}
+      </div>
+    `;
+    return card;
+  }
+
+  async function init() {
+    try {
+      // Kick off all requests in parallel
+      const pinnedNames = new Set(PINNED_REPOS);
+      const [user, repos, readmeHtml] = await Promise.all([
+        fetchJSON(`https://api.github.com/users/${GH_USER}`),
+        fetchJSON(`https://api.github.com/users/${GH_USER}/repos?per_page=21&sort=updated`),
+        fetchProfileReadme(),
+      ]);
+
+      // Profile
+      document.getElementById('avatar').src = user.avatar_url;
+      document.getElementById('displayName').textContent = user.name || user.login;
+      document.getElementById('username').textContent = '@' + user.login;
+      document.getElementById('bio').textContent = user.bio || '';
+
+      // Update OG image now that we have the real avatar
+      const ogImg = document.querySelector('meta[property="og:image"]');
+      if (ogImg) ogImg.content = user.avatar_url;
+
+      // Profile links
+      const links = document.getElementById('profileLinks');
+      links.innerHTML = `<a href="${user.html_url}" target="_blank" rel="noopener">GitHub</a>`;
+      if (user.blog) {
+        const blogUrl = user.blog.startsWith('http') ? user.blog : 'https://' + user.blog;
+        links.innerHTML += `<a href="${blogUrl}" target="_blank" rel="noopener">Website</a>`;
+      }
+      if (user.twitter_username) {
+        links.innerHTML += `<a href="https://twitter.com/${encodeURIComponent(user.twitter_username)}" target="_blank" rel="noopener">Twitter</a>`;
+      }
+
+      // Profile README
+      if (readmeHtml) {
+        const readmeSection = document.getElementById('readmeSection');
+        readmeSection.style.display = '';
+        const readmeContent = document.getElementById('readmeContent');
+        readmeContent.innerHTML = readmeHtml;
+
+        // Remove octicon anchor link SVGs
+        readmeContent.querySelectorAll('.octicon-link, a.anchor').forEach(el => el.remove());
+
+        // Decode camo.githubusercontent.com proxy URLs back to original sources
+        // Camo URLs encode the original URL as hex in the path: /HASH/HEX_ENCODED_URL
+        readmeContent.querySelectorAll('img').forEach(img => {
+          const src = img.getAttribute('src') || '';
+          if (src.includes('camo.githubusercontent.com')) {
+            try {
+              const url = new URL(src);
+              const parts = url.pathname.split('/').filter(Boolean);
+              if (parts.length >= 2) {
+                const hex = parts[parts.length - 1];
+                const decoded = hex.match(/.{2}/g).map(b => String.fromCharCode(parseInt(b, 16))).join('');
+                if (decoded.startsWith('http')) img.src = decoded;
+              }
+            } catch {}
+          } else if (src && !src.startsWith('http')) {
+            img.src = `https://raw.githubusercontent.com/${GH_USER}/${GH_USER}/main/${src}`;
+          }
+        });
+
+        readmeContent.querySelectorAll('a').forEach(a => {
+          const href = a.getAttribute('href');
+          if (href && !href.startsWith('http') && !href.startsWith('#') && !href.includes(':')) {
+            a.href = `https://github.com/${GH_USER}/${GH_USER}/blob/main/${href}`;
+          }
+        });
+      }
+
+      // Filter out forks, sort by updated
+      const own = repos
+        .filter(r => !r.fork)
+        .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
+      // Pinned repos — preserve PINNED_REPOS order
+      const repoMap = new Map(own.map(r => [r.name, r]));
+      const pinned = PINNED_REPOS.map(name => repoMap.get(name)).filter(Boolean);
+      const pinnedSet = new Set(PINNED_REPOS);
+      const rest = own.filter(r => !pinnedSet.has(r.name));
+
+      if (pinned.length) {
+        const pinnedSection = document.getElementById('pinnedSection');
+        pinnedSection.style.display = '';
+        const pinnedGrid = document.getElementById('pinnedGrid');
+        pinned.forEach(r => pinnedGrid.appendChild(buildCard(r, true)));
+      }
+
+      // All other repos
+      const repoContent = document.getElementById('repoContent');
+      if (rest.length) {
+        const grid = document.createElement('div');
+        grid.className = 'repo-grid';
+        rest.forEach(r => grid.appendChild(buildCard(r, false)));
+        repoContent.replaceChildren(grid);
+      } else {
+        repoContent.innerHTML = '<p class="loading">No repositories found.</p>';
+      }
+
+    } catch (err) {
+      document.getElementById('repoContent').innerHTML =
+        `<div class="error">Failed to load repositories.<br><small>${err.message}</small></div>`;
+    }
+  }
+
+  init();
+</script>
+
+</body>
+</html>
