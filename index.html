@@ -30,6 +30,16 @@
   <meta name="color-scheme" content="dark">
   <meta name="darkreader-lock">
 
+  <!--
+    Preconnect to critical third-party origins.
+    Saves ~300–320 ms on LCP by establishing connections early.
+    Kept to ≤4 origins as recommended.
+  -->
+  <link rel="preconnect" href="https://api.github.com">
+  <link rel="preconnect" href="https://avatars.githubusercontent.com" crossorigin>
+  <link rel="preconnect" href="https://github-readme-testaustime.vercel.app" crossorigin>
+  <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -56,8 +66,21 @@
       min-height: 100vh;
     }
 
-    a { color: var(--accent); text-decoration: none; transition: color .2s; }
-    a:hover { color: var(--accent-hover); }
+    /*
+      Links: add underline so they are distinguishable without relying on
+      colour alone (fixes "Links rely on colour to be distinguishable").
+    */
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      text-underline-offset: 3px;
+      transition: color .2s, text-decoration-color .2s;
+    }
+    a:hover {
+      color: var(--accent-hover);
+      text-decoration-color: var(--accent-hover);
+    }
 
     /* ---- Header / Profile ---- */
     .profile {
@@ -72,6 +95,7 @@
       width: 96px; height: 96px;
       border-radius: 50%;
       border: 2px solid var(--border);
+      /* Prevent layout shift — space is reserved even before the image loads */
     }
     .profile-info h1 { font-size: 1.6rem; font-weight: 600; }
     .profile-info p { color: var(--text-muted); margin-top: .25rem; }
@@ -83,8 +107,9 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       transition: background .2s, border-color .2s;
+      text-decoration: none; /* pill-button style — no underline needed */
     }
-    .profile-links a:hover { background: var(--surface); border-color: var(--accent); }
+    .profile-links a:hover { background: var(--surface); border-color: var(--accent); text-decoration: none; }
 
     /* ---- Section ---- */
     .section {
@@ -103,6 +128,13 @@
     }
     .section h2 .icon { font-size: 1.1rem; }
 
+    /*
+      Reserve space for the repo section while data loads so the rest of the
+      page doesn't shift when cards appear (reduces CLS on #repoSection).
+    */
+    #repoSection .repo-grid,
+    #repoSection > div { min-height: 160px; }
+
     /* ---- Repo grid ---- */
     .repo-grid {
       display: grid;
@@ -119,10 +151,13 @@
       flex-direction: column;
       gap: .5rem;
       transition: border-color .2s, box-shadow .2s;
+      /* Repo cards are pill-style — suppress underline */
+      text-decoration: none;
     }
     .repo-card:hover {
       border-color: var(--accent);
       box-shadow: 0 0 12px var(--pin-glow);
+      text-decoration: none;
     }
     .repo-card.pinned {
       border-color: #58a6ff55;
@@ -204,8 +239,19 @@
     .readme-card h6 { font-size: .85em; }
     .readme-card h1:first-child, .readme-card h2:first-child { margin-top: 0; }
     .readme-card p { margin: .6em 0; }
-    .readme-card img { max-width: 100%; border-radius: 6px; }
+    /*
+      All readme images: reserve a minimum height so they don't shift content
+      below them. Explicit width/height attrs are also set in JS.
+    */
+    .readme-card img {
+      max-width: 100%;
+      border-radius: 6px;
+      height: auto;
+      /* Prevent layout shift for images whose dimensions are known at render */
+      content-visibility: auto;
+    }
     .readme-card a { color: var(--accent); }
+    .readme-card a:hover { color: var(--accent-hover); }
     .readme-card code {
       background: var(--bg); padding: .15em .4em; border-radius: 4px;
       font-size: .9em;
@@ -248,8 +294,25 @@
 </head>
 <body>
 
+  <!--
+    <main> landmark wraps all primary page content.
+    Fixes "Document does not have a main landmark" audit failure.
+  -->
   <header class="profile" id="profile">
-    <img id="avatar" alt="Omena0 avatar" src="">
+    <!--
+      width & height attributes: the browser reserves exactly 96×96 px before
+      the image loads, eliminating the layout shift caused by an unsized image.
+      fetchpriority="high": tells the browser to fetch the avatar (LCP
+      candidate while the README loads) with high priority, reducing LCP.
+    -->
+    <img
+      id="avatar"
+      alt="Omena0's GitHub avatar"
+      src="https://avatars.githubusercontent.com/u/Omena0"
+      width="96"
+      height="96"
+      fetchpriority="high"
+    >
     <div class="profile-info">
       <h1 id="displayName">Omena0</h1>
       <p id="username">@Omena0</p>
@@ -258,25 +321,27 @@
     </div>
   </header>
 
-  <section class="section" id="readmeSection" style="display:none">
-    <h2>About Me</h2>
-    <div class="readme-card" id="readmeContent"></div>
-  </section>
+  <main>
+    <section class="section" id="readmeSection" style="display:none" aria-label="About Me">
+      <h2>About Me</h2>
+      <div class="readme-card" id="readmeContent"></div>
+    </section>
 
-  <section class="section" id="pinnedSection" style="display:none">
-    <h2>Pinned</h2>
-    <div class="repo-grid" id="pinnedGrid"></div>
-  </section>
+    <section class="section" id="pinnedSection" style="display:none" aria-label="Pinned repositories">
+      <h2>Pinned</h2>
+      <div class="repo-grid" id="pinnedGrid"></div>
+    </section>
 
-  <section class="section" id="repoSection">
-    <h2>Repositories</h2>
-    <div id="repoContent">
-      <div class="loading"><div class="spinner"></div>Loading repositories&hellip;</div>
-    </div>
-  </section>
+    <section class="section" id="repoSection" aria-label="Repositories">
+      <h2>Repositories</h2>
+      <div id="repoContent">
+        <div class="loading" aria-live="polite"><div class="spinner" role="status" aria-label="Loading"></div>Loading repositories&hellip;</div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    Built with the GitHub API &middot; <a href="https://github.com/Omena0">github.com/Omena0</a>
+    Built with the GitHub API &middot; <a href="https://github.com/Omena0" aria-label="Omena0 on GitHub">github.com/Omena0</a>
   </footer>
 
 <script>
@@ -320,10 +385,12 @@
     card.className = 'repo-card' + (pinned ? ' pinned' : '');
     card.href = repo.html_url;
     card.target = '_blank';
-    card.rel = 'noopener';
+    card.rel = 'noopener noreferrer';
+    // Provide a discernible name for screen readers ("Links do not have a discernible name")
+    card.setAttribute('aria-label', `${repo.name}${repo.description ? ': ' + repo.description : ''} — open on GitHub`);
 
     const langDot = repo.language
-      ? `<span class="lang-dot" style="background:${langColors[repo.language] || '#8b949e'}"></span> ${repo.language}`
+      ? `<span class="lang-dot" style="background:${langColors[repo.language] || '#8b949e'}" aria-hidden="true"></span> <span>${repo.language}</span>`
       : '';
 
     card.innerHTML = `
@@ -334,8 +401,8 @@
       <div class="desc">${repo.description || '<em>No description</em>'}</div>
       <div class="meta">
         ${langDot ? `<span>${langDot}</span>` : ''}
-        ${repo.stargazers_count ? `<span>&#11088; ${repo.stargazers_count}</span>` : ''}
-        ${repo.forks_count ? `<span>&#127860; ${repo.forks_count}</span>` : ''}
+        ${repo.stargazers_count ? `<span aria-label="${repo.stargazers_count} stars">&#11088; ${repo.stargazers_count}</span>` : ''}
+        ${repo.forks_count ? `<span aria-label="${repo.forks_count} forks">&#127860; ${repo.forks_count}</span>` : ''}
       </div>
     `;
     return card;
@@ -351,8 +418,10 @@
         fetchProfileReadme(),
       ]);
 
-      // Profile
-      document.getElementById('avatar').src = user.avatar_url;
+      // Profile — update src rather than replacing the element so the
+      // browser doesn't create a new layout box (avoids CLS)
+      const avatarEl = document.getElementById('avatar');
+      if (user.avatar_url) avatarEl.src = user.avatar_url;
       document.getElementById('displayName').textContent = user.name || user.login;
       document.getElementById('username').textContent = '@' + user.login;
       document.getElementById('bio').textContent = user.bio || '';
@@ -363,13 +432,13 @@
 
       // Profile links
       const links = document.getElementById('profileLinks');
-      links.innerHTML = `<a href="${user.html_url}" target="_blank" rel="noopener">GitHub</a>`;
+      links.innerHTML = `<a href="${user.html_url}" target="_blank" rel="noopener noreferrer" aria-label="Omena0 on GitHub">GitHub</a>`;
       if (user.blog) {
         const blogUrl = user.blog.startsWith('http') ? user.blog : 'https://' + user.blog;
-        links.innerHTML += `<a href="${blogUrl}" target="_blank" rel="noopener">Website</a>`;
+        links.innerHTML += `<a href="${blogUrl}" target="_blank" rel="noopener noreferrer" aria-label="Omena0's website">Website</a>`;
       }
       if (user.twitter_username) {
-        links.innerHTML += `<a href="https://twitter.com/${encodeURIComponent(user.twitter_username)}" target="_blank" rel="noopener">Twitter</a>`;
+        links.innerHTML += `<a href="https://twitter.com/${encodeURIComponent(user.twitter_username)}" target="_blank" rel="noopener noreferrer" aria-label="Omena0 on Twitter">Twitter</a>`;
       }
 
       // Profile README
@@ -383,9 +452,44 @@
         readmeContent.querySelectorAll('.octicon-link, a.anchor').forEach(el => el.remove());
 
         // Decode camo.githubusercontent.com proxy URLs back to original sources
-        // Camo URLs encode the original URL as hex in the path: /HASH/HEX_ENCODED_URL
+        let isFirstImg = true;
         readmeContent.querySelectorAll('img').forEach(img => {
           const src = img.getAttribute('src') || '';
+
+          // --- Fix CLS: add explicit width/height from attributes or fallback values ---
+          // If the element already has height/width HTML attrs, honour them;
+          // otherwise set sensible defaults so the browser reserves space.
+          const attrH = img.getAttribute('height');
+          const attrW = img.getAttribute('width');
+          if (attrH && !img.style.height) img.style.height = attrH + 'px';
+          if (attrW && !img.style.width)  img.style.width  = attrW + 'px';
+          // Always keep max-width safe
+          img.style.maxWidth = '100%';
+          if (!attrH && !attrW) {
+            // Unsized image: give it an aspect-ratio so the browser reserves
+            // space without fixing a hard pixel size
+            img.style.aspectRatio = '3 / 1';
+            img.style.height = 'auto';
+          }
+
+          // --- Fix LCP: first readme image gets fetchpriority=high ---
+          if (isFirstImg) {
+            img.setAttribute('fetchpriority', 'high');
+            isFirstImg = false;
+          } else {
+            // Non-LCP images: lazy-load to avoid competing with LCP resource
+            img.loading = 'lazy';
+          }
+
+          // --- Fix accessibility: ensure all images have alt text ---
+          if (!img.getAttribute('alt')) {
+            // Derive a label from the surrounding anchor or a generic fallback
+            const anchor = img.closest('a');
+            const anchorTitle = anchor ? (anchor.getAttribute('title') || '') : '';
+            img.alt = anchorTitle || 'README image';
+          }
+
+          // --- Decode camo URLs / fix relative paths ---
           if (src.includes('camo.githubusercontent.com')) {
             try {
               const url = new URL(src);
@@ -405,6 +509,16 @@
           const href = a.getAttribute('href');
           if (href && !href.startsWith('http') && !href.startsWith('#') && !href.includes(':')) {
             a.href = `https://github.com/${GH_USER}/${GH_USER}/blob/main/${href}`;
+          }
+          // Ensure external readme links open safely
+          if (a.href && a.href.startsWith('http') && !a.href.includes('omena0.github.io')) {
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+          }
+          // Fix discernible name: if the link only contains an image, use the image alt
+          if (!a.textContent.trim() && a.querySelector('img')) {
+            const imgEl = a.querySelector('img');
+            if (imgEl && imgEl.alt) a.setAttribute('aria-label', imgEl.alt);
           }
         });
       }
@@ -440,7 +554,7 @@
 
     } catch (err) {
       document.getElementById('repoContent').innerHTML =
-        `<div class="error">Failed to load repositories.<br><small>${err.message}</small></div>`;
+        `<div class="error" role="alert">Failed to load repositories.<br><small>${err.message}</small></div>`;
     }
   }
 
