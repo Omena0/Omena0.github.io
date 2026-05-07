@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CSV → Moodle XML</title>
+
+<style>
+    :root {
+        --bg: #111315;
+        --panel: #1a1d21;
+        --border: #2a2f36;
+        --text: #e7eaf0;
+        --muted: #9aa4b2;
+        --accent: #4f8cff;
+        --danger: #ff5c5c;
+        --success: #57c27e;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Inter, system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+    }
+
+    .app {
+        width: 100%;
+        max-width: 720px;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 28px;
+    }
+
+    h1 {
+        margin: 0 0 8px;
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+    p {
+        margin: 0 0 24px;
+        color: var(--muted);
+        line-height: 1.5;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 14px;
+        color: var(--muted);
+    }
+
+    .row {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 18px;
+    }
+
+    input[type="text"] {
+        flex: 1;
+        background: #121417;
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 14px;
+        font-size: 14px;
+        outline: none;
+    }
+
+    input[type="text"]:focus {
+        border-color: var(--accent);
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .button {
+        background: #20242a;
+        border: 1px solid var(--border);
+        color: var(--text);
+        border-radius: 10px;
+        padding: 12px 16px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.15s ease;
+    }
+
+    .button:hover {
+        background: #2a3038;
+    }
+
+    .button.primary {
+        background: var(--accent);
+        border-color: transparent;
+        color: white;
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .button.primary:hover {
+        filter: brightness(1.08);
+    }
+
+    .status {
+        margin-top: 18px;
+        border-radius: 10px;
+        padding: 12px 14px;
+        font-size: 14px;
+        display: none;
+        white-space: pre-wrap;
+        line-height: 1.5;
+    }
+
+    .status.error {
+        display: block;
+        background: rgba(255, 92, 92, 0.12);
+        border: 1px solid rgba(255, 92, 92, 0.25);
+        color: #ffb3b3;
+    }
+
+    .status.success {
+        display: block;
+        background: rgba(87, 194, 126, 0.12);
+        border: 1px solid rgba(87, 194, 126, 0.25);
+        color: #b7f0c8;
+    }
+
+    .footer {
+        margin-top: 24px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    code {
+        background: #101214;
+        border: 1px solid var(--border);
+        padding: 2px 6px;
+        border-radius: 6px;
+        font-size: 12px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="app">
+    <h1>CSV → Moodle XML</h1>
+
+    <p>
+        Muuntaa CSV-kysymystiedoston Moodle XML -formaatiksi.
+    </p>
+
+    <label>CSV-tiedosto</label>
+
+    <div class="row">
+        <input id="filepath" type="text" readonly placeholder="Valitse CSV-tiedosto..." />
+
+        <button class="button" id="pickButton">
+            Valitse tiedosto
+        </button>
+
+        <input id="fileInput" type="file" accept=".csv,text/csv" />
+    </div>
+
+    <button class="button primary" id="convertButton">
+        Muunna
+    </button>
+
+    <div id="status" class="status"></div>
+
+    <div class="footer">
+        CSV-formaatti:
+        <br><br>
+
+        <code>
+            kysymys,vastaus1,vastaus1_oikein,vastaus2,vastaus2_oikein,...
+        </code>
+
+        <br><br>
+
+        Käytä <code>1</code> oikeille vastauksille ja <code>0</code> väärille.
+    </div>
+</div>
+
+<script>
+const fileInput = document.getElementById("fileInput");
+const filepath = document.getElementById("filepath");
+const pickButton = document.getElementById("pickButton");
+const convertButton = document.getElementById("convertButton");
+const statusBox = document.getElementById("status");
+
+let selectedFile = null;
+
+function showError(message) {
+    statusBox.className = "status error";
+    statusBox.textContent = message;
+}
+
+function showSuccess(message) {
+    statusBox.className = "status success";
+    statusBox.textContent = message;
+}
+
+function clearStatus() {
+    statusBox.className = "status";
+    statusBox.textContent = "";
+}
+
+pickButton.addEventListener("click", () => {
+    fileInput.click();
+});
+
+fileInput.addEventListener("change", () => {
+    clearStatus();
+
+    if (!fileInput.files || fileInput.files.length === 0) {
+        selectedFile = null;
+        filepath.value = "";
+        return;
+    }
+
+    selectedFile = fileInput.files[0];
+    filepath.value = selectedFile.name;
+});
+
+convertButton.addEventListener("click", async () => {
+    clearStatus();
+
+    try {
+        if (!selectedFile) {
+            throw new Error("CSV-tiedostoa ei ole valittu.");
+        }
+
+        const text = await selectedFile.text();
+
+        if (!text.trim()) {
+            throw new Error("CSV-tiedosto on tyhjä.");
+        }
+
+        const rows = parseCSV(text);
+
+        if (rows.length < 2) {
+            throw new Error("CSV-tiedostossa ei ole kysymyksiä.");
+        }
+
+        const xml = generateMoodleXML(rows);
+
+        const blob = new Blob([xml], {
+            type: "application/xml"
+        });
+
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "moodle_questions.xml";
+
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        URL.revokeObjectURL(url);
+
+        showSuccess("XML-tiedosto luotu onnistuneesti.");
+
+    } catch (err) {
+        showError(err.message);
+    }
+});
+
+function parseCSV(text) {
+    const rows = [];
+    let current = "";
+    let row = [];
+    let insideQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const next = text[i + 1];
+
+        if (char === '"') {
+            if (insideQuotes && next === '"') {
+                current += '"';
+                i++;
+            } else {
+                insideQuotes = !insideQuotes;
+            }
+        }
+        else if (char === "," && !insideQuotes) {
+            row.push(current);
+            current = "";
+        }
+        else if ((char === "\n" || char === "\r") && !insideQuotes) {
+            if (char === "\r" && next === "\n") {
+                i++;
+            }
+
+            row.push(current);
+
+            if (row.some(x => x.trim() !== "")) {
+                rows.push(row);
+            }
+
+            row = [];
+            current = "";
+        }
+        else {
+            current += char;
+        }
+    }
+
+    if (current.length > 0 || row.length > 0) {
+        row.push(current);
+        rows.push(row);
+    }
+
+    return rows;
+}
+
+function escapeXML(str) {
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&apos;");
+}
+
+function generateMoodleXML(rows) {
+    const header = rows[0];
+
+    if (header.length < 5) {
+        throw new Error("CSV-header on liian lyhyt.");
+    }
+
+    let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<quiz>\n`;
+
+    for (let rowIndex = 1; rowIndex < rows.length; rowIndex++) {
+        const row = rows[rowIndex];
+
+        if (row.length < 5) {
+            throw new Error(`Rivi ${rowIndex + 1}: liian vähän sarakkeita.`);
+        }
+
+        const question = row[0]?.trim();
+
+        if (!question) {
+            throw new Error(`Rivi ${rowIndex + 1}: kysymys puuttuu.`);
+        }
+
+        const answers = [];
+
+        for (let i = 1; i < row.length; i += 2) {
+            const answerText = row[i];
+            const correctValue = row[i + 1];
+
+            if (answerText === undefined || correctValue === undefined) {
+                throw new Error(
+                    `Rivi ${rowIndex + 1}: vastauspari puuttuu.`
+                );
+            }
+
+            const trimmedAnswer = answerText.trim();
+
+            if (!trimmedAnswer) {
+                throw new Error(
+                    `Rivi ${rowIndex + 1}: tyhjä vastaus.`
+                );
+            }
+
+            if (correctValue !== "0" && correctValue !== "1") {
+                throw new Error(
+                    `Rivi ${rowIndex + 1}: oikeellisuus pitää olla 0 tai 1.`
+                );
+            }
+
+            answers.push({
+                text: trimmedAnswer,
+                correct: correctValue === "1"
+            });
+        }
+
+        const correctAnswers = answers.filter(a => a.correct);
+
+        if (correctAnswers.length === 0) {
+            throw new Error(
+                `Rivi ${rowIndex + 1}: vähintään yksi oikea vastaus vaaditaan.`
+            );
+        }
+
+        const fraction = 100 / correctAnswers.length;
+        const single = correctAnswers.length === 1;
+
+        xml += `
+  <question type="multichoice">
+    <name>
+      <text>Kysymys ${rowIndex}</text>
+    </name>
+
+    <questiontext format="html">
+      <text>${question}</text>
+    </questiontext>
+
+    <shuffleanswers>true</shuffleanswers>
+    <single>${single}</single>
+`;
+
+        for (const answer of answers) {
+            xml += `
+    <answer fraction="${answer.correct ? fraction : 0}">
+      <text>${escapeXML(answer.text)}</text>
+    </answer>
+`;
+        }
+
+        xml += `
+  </question>
+`;
+    }
+
+    xml += `</quiz>\n`;
+
+    return xml;
+}
+</script>
+
+</body>
+</html>
