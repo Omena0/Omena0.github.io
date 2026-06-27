@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Overseer Terms of Service</title>
+
+<style>
+:root {
+  --bg: #0b0f14;
+  --panel: #111826;
+  --text: #e6edf3;
+  --muted: #9aa4b2;
+  --accent: #4aa3ff;
+  --border: #1f2a3a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  padding: 40px 20px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #0b0f14, #0d1420);
+}
+
+h1 { margin: 0; font-size: 28px; }
+.subtitle { color: var(--muted); margin-top: 8px; }
+
+.container {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+nav {
+  position: sticky;
+  top: 20px;
+  align-self: start;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+nav a {
+  display: block;
+  color: var(--muted);
+  text-decoration: none;
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+nav a:hover { color: var(--accent); }
+
+section {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-top: 0;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+
+code {
+  background: #0a0f18;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.small { color: var(--muted); font-size: 13px; }
+
+a.anchor {
+  float: right;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 12px;
+}
+
+a.anchor:hover { color: var(--accent); }
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 900px) {
+  .container { grid-template-columns: 1fr; }
+  nav { position: relative; top: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Overseer Terms of Service</h1>
+  <div class="subtitle">
+    Version 1 · Applies to Overseer Bot v38 · Last updated: 27 June 2026
+  </div>
+</header>
+
+<div class="container">
+
+<nav>
+  <strong>Contents</strong>
+  <a href="#acceptance">Acceptance</a>
+  <a href="#service">Service Description</a>
+  <a href="#ai">AI Moderation</a>
+  <a href="#exclusions">Exclusions</a>
+  <a href="#data">Data Storage</a>
+  <a href="#groq">Groq API</a>
+  <a href="#sync">Ban Sync</a>
+  <a href="#appeals">Appeals & False Positives</a>
+  <a href="#use">Acceptable Use</a>
+  <a href="#termination">Termination</a>
+  <a href="#liability">Liability</a>
+  <a href="#changes">Changes</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+
+<section id="acceptance">
+<a class="anchor" href="#acceptance">#</a>
+<h2>1. Acceptance of Terms</h2>
+<p>By adding or using Overseer ("the Bot"), you agree to these Terms of Service. Server administrators are responsible for ensuring they have authority to install and configure the Bot in their Discord servers.</p>
+</section>
+
+<section id="service">
+<a class="anchor" href="#service">#</a>
+<h2>2. Service Description</h2>
+<p>Overseer is an AI-powered moderation bot for Discord servers. It analyzes messages using a large language model-based safety system to enforce server-defined moderation policies.</p>
+<p>Features may be modified, added, or removed at any time without notice.</p>
+</section>
+
+<section id="ai">
+<a class="anchor" href="#ai">#</a>
+<h2>3. AI Moderation & Processing</h2>
+<p>All non-excluded messages in participating servers are processed using the server owner's Groq API key and the <code>gpt-oss-safeguard:20b</code> model.</p>
+<p>Messages are evaluated against the server-defined moderation policy configured via the Bot.</p>
+</section>
+
+<section id="exclusions">
+<a class="anchor" href="#exclusions">#</a>
+<h2>4. Excluded Content Rules</h2>
+
+<ul>
+  <li><strong>Excluded channels & categories:</strong> Messages in excluded channels or categories are <b>never sent</b> to Groq and are not moderated.</li>
+  <li><strong>Excluded roles:</strong> Messages from users with excluded roles are not directly moderated, but may be included as contextual information when evaluating surrounding messages.</li>
+  <li><strong>Images & attachments:</strong> Image content is not analyzed or moderated.</li>
+</ul>
+</section>
+
+<section id="data">
+<a class="anchor" href="#data">#</a>
+<h2>5. Data Storage</h2>
+
+<p>The Bot stores the following data per server:</p>
+<ul>
+  <li>Server configuration (policy text, excluded channels/roles/categories)</li>
+  <li>Groq API key (stored in plaintext)</li>
+  <li>Appeals channel ID</li>
+  <li>Appeals rate limits</li>
+  <li>Synced server IDs</li>
+  <li>Moderation logs (permanently stored)</li>
+  <li>User violations (user IDs and flagged message content)</li>
+</ul>
+
+<p>Moderation logs and violation records are stored indefinitely unless manually removed.</p>
+</section>
+
+<section id="groq">
+<a class="anchor" href="#groq">#</a>
+<h2>6. Third-Party AI Processing (Groq)</h2>
+
+<p>Messages that are subject to moderation are sent to Groq using the server owner's API key. Use of Groq is subject to Groq's own terms and privacy policies.</p>
+</section>
+
+<section id="sync">
+<a class="anchor" href="#sync">#</a>
+<h2>7. Ban Sync</h2>
+
+<p>The Bot supports cross-server ban synchronization between linked servers.</p>
+<p>No persistent data is stored for ban sync beyond the list of linked server IDs. If a banned user is present in linked servers, the Bot will attempt to apply the ban automatically.</p>
+</section>
+
+<section id="appeals">
+<a class="anchor" href="#appeals">#</a>
+<h2>8. Appeals & False Positives</h2>
+
+<p>Appeals are sent to the configured appeals channel and include:</p>
+<ul>
+  <li>Original message content</li>
+  <li>AI moderation reasoning</li>
+  <li>Applied punishment</li>
+</ul>
+
+<p>False positive reports submitted by users are sent to the Bot owner with full message context, username, and moderation reasoning.</p>
+</section>
+
+<section id="use">
+<a class="anchor" href="#use">#</a>
+<h2>9. Acceptable Use</h2>
+
+<p>You agree not to misuse the Bot, including but not limited to:</p>
+<ul>
+  <li>Attempting to exploit or bypass moderation systems</li>
+  <li>Overloading or spamming the Bot</li>
+  <li>Using the Bot for illegal or abusive purposes</li>
+</ul>
+</section>
+
+<section id="termination">
+<a class="anchor" href="#termination">#</a>
+<h2>10. Termination</h2>
+
+<p>The Bot may be removed from any server at any time by server administrators. The Bot owner reserves the right to disable access for abusive usage.</p>
+</section>
+
+<section id="liability">
+<a class="anchor" href="#liability">#</a>
+<h2>11. Disclaimer & Limitation of Liability</h2>
+
+<p>The Bot is provided "as is" without warranties of any kind.</p>
+<p>The developer is not liable for any damages, including but not limited to:</p>
+<ul>
+  <li>False positives or incorrect moderation actions</li>
+  <li>Data loss</li>
+  <li>Service downtime</li>
+  <li>API failures</li>
+  <li>Accidental bans or timeouts</li>
+</ul>
+
+<p>Use of the Bot is at your own risk.</p>
+</section>
+
+<section id="changes">
+<a class="anchor" href="#changes">#</a>
+<h2>12. Changes to Terms</h2>
+
+<p>These Terms may be updated at any time. Continued use of the Bot constitutes acceptance of the updated Terms.</p>
+</section>
+
+<section id="contact">
+<a class="anchor" href="#contact">#</a>
+<h2>13. Contact</h2>
+
+<p>Owner: Omena0</p>
+<p>Email: <a href="mailto:omena0mc@gmail.com">omena0mc@gmail.com</a></p>
+<p>Discord: @omena0</p>
+</section>
+
+</main>
+</div>
+
+<footer>
+Overseer Terms of Service · Version 1 · Bot v38
+</footer>
+
+<script>
+document.querySelectorAll('a.anchor').forEach(a => {
+  a.addEventListener('click', () => {
+    navigator.clipboard.writeText(window.location.origin + window.location.pathname + a.getAttribute('href'));
+  });
+});
+</script>
+
+</body>
+</html>
