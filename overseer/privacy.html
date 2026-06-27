@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Overseer Privacy Policy</title>
+
+<style>
+:root {
+  --bg: #0b0f14;
+  --panel: #111826;
+  --text: #e6edf3;
+  --muted: #9aa4b2;
+  --accent: #4aa3ff;
+  --border: #1f2a3a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  padding: 40px 20px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #0b0f14, #0d1420);
+}
+
+h1 { margin: 0; font-size: 28px; }
+.subtitle { color: var(--muted); margin-top: 8px; }
+
+.container {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+nav {
+  position: sticky;
+  top: 20px;
+  align-self: start;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+nav a {
+  display: block;
+  color: var(--muted);
+  text-decoration: none;
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+nav a:hover { color: var(--accent); }
+
+section {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-top: 0;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+
+.small { color: var(--muted); font-size: 13px; }
+
+a.anchor {
+  float: right;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 12px;
+}
+
+a.anchor:hover { color: var(--accent); }
+
+code {
+  background: #0a0f18;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 900px) {
+  .container { grid-template-columns: 1fr; }
+  nav { position: relative; top: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Overseer Privacy Policy</h1>
+  <div class="subtitle">
+    Version 1 · Applies to Overseer Bot v38 · Made at Bot Version 38 · Last updated: 27 June 2026
+  </div>
+</header>
+
+<div class="container">
+
+<nav>
+  <strong>Contents</strong>
+  <a href="#overview">Overview</a>
+  <a href="#data-collected">Data Collected</a>
+  <a href="#processing">Message Processing</a>
+  <a href="#exclusions">Excluded Content</a>
+  <a href="#storage">Data Storage</a>
+  <a href="#api">API Keys</a>
+  <a href="#thirdparty">Third-Party Services</a>
+  <a href="#appeals">Appeals & Reports</a>
+  <a href="#sync">Ban Sync</a>
+  <a href="#retention">Data Retention</a>
+  <a href="#rights">User Rights</a>
+  <a href="#security">Security</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main>
+
+<section id="overview">
+<a class="anchor" href="#overview">#</a>
+<h2>1. Overview</h2>
+
+<p>Overseer ("the Bot") is an AI-powered moderation system for Discord servers. It analyzes messages using a large language model-based safety classifier to enforce server-defined moderation policies.</p>
+
+<p>This Privacy Policy explains what data is collected, how it is used, and how it is stored.</p>
+</section>
+
+<section id="data-collected">
+<a class="anchor" href="#data-collected">#</a>
+<h2>2. Data Collected</h2>
+
+<p>The Bot may collect and store the following data depending on configuration:</p>
+
+<ul>
+  <li>Server configuration (moderation policy, excluded channels/roles/categories)</li>
+  <li>Discord user IDs</li>
+  <li>Discord server (guild) IDs</li>
+  <li>Channel and role IDs</li>
+  <li>Moderation decisions and violation records</li>
+  <li>Flagged message content (text only)</li>
+</ul>
+
+<p>Images and attachments are not collected or analyzed.</p>
+</section>
+
+<section id="processing">
+<a class="anchor" href="#processing">#</a>
+<h2>3. Message Processing</h2>
+
+<p>Messages that are subject to moderation are sent to Groq using the server owner's API key for AI-based classification.</p>
+
+<p>No data is used for AI training by Overseer.</p>
+</section>
+
+<section id="exclusions">
+<a class="anchor" href="#exclusions">#</a>
+<h2>4. Excluded Content</h2>
+
+<ul>
+  <li><strong>Excluded channels & categories:</strong> Messages in excluded channels or categories are NOT sent to Groq and are not processed.</li>
+  <li><strong>Excluded roles:</strong> Messages from excluded roles are not directly moderated, but may be included as contextual information when evaluating nearby messages.</li>
+  <li><strong>Images & attachments:</strong> Images and attachments are not processed or analyzed.</li>
+</ul>
+</section>
+
+<section id="storage">
+<a class="anchor" href="#storage">#</a>
+<h2>5. Data Storage</h2>
+
+<p>The Bot stores moderation-related data for functionality purposes:</p>
+
+<ul>
+  <li>Moderation logs (stored permanently)</li>
+  <li>User violations (including flagged message content and AI reasoning)</li>
+  <li>Server configuration data</li>
+  <li>Appeals data (until manually removed by server administrators)</li>
+  <li>Synced server IDs (for ban synchronization only)</li>
+</ul>
+
+<p>Kicking or removing the Bot does NOT automatically delete stored data.</p>
+</section>
+
+<section id="api">
+<a class="anchor" href="#api">#</a>
+<h2>6. API Keys</h2>
+
+<p>Server-provided Groq API keys are stored in plaintext to enable message processing. These keys are used only for moderation requests initiated by the server.</p>
+
+<p>Users are responsible for managing and rotating their API keys if needed.</p>
+</section>
+
+<section id="thirdparty">
+<a class="anchor" href="#thirdparty">
+#</a>
+<h2>7. Third-Party Services</h2>
+
+<p>Overseer uses Groq for AI message classification. Any data processed by Groq is subject to Groq’s own privacy policy and terms.</p>
+</section>
+
+<section id="appeals">
+<a class="anchor" href="#appeals">#</a>
+<h2>8. Appeals & Reports</h2>
+
+<p>When a user submits a false positive report or appeal, the following may be sent to the Bot owner:</p>
+
+<ul>
+  <li>Full message content</li>
+  <li>Discord username</li>
+  <li>Server ID</li>
+  <li>AI moderation reasoning</li>
+  <li>Applied punishment</li>
+</ul>
+
+<p>Appeals submitted in servers are stored in the configured appeals channel until removed by server administrators.</p>
+</section>
+
+<section id="sync">
+<a class="anchor" href="#sync">#</a>
+<h2>9. Ban Synchronization</h2>
+
+<p>Ban sync operates without persistent user data storage.</p>
+
+<p>Only linked server IDs are stored to enable cross-server ban propagation. No additional user profiling or history is kept for sync functionality.</p>
+</section>
+
+<section id="retention">
+<a class="anchor" href="#retention">#</a>
+<h2>10. Data Retention</h2>
+
+<ul>
+  <li>Moderation logs: stored indefinitely</li>
+  <li>User violations: stored indefinitely</li>
+  <li>Appeals: stored until manually deleted</li>
+  <li>Server configuration: stored while bot is installed</li>
+</ul>
+
+<p>There is currently no automatic data expiration system.</p>
+</section>
+
+<section id="rights">
+<a class="anchor" href="#rights">#</a>
+<h2>11. User Rights</h2>
+
+<p>Users may request data removal by contacting the bot owner. The primary method of removal is to request deletion directly from:</p>
+
+<ul>
+  <li>Email: <a href="mailto:omena0mc@gmail.com">omena0mc@gmail.com</a></li>
+  <li>Discord: @omena0</li>
+</ul>
+
+<p>Removing the bot from a server does not automatically delete stored data, as it may be required for moderation history and safety logs.</p>
+</section>
+
+<section id="security">
+<a class="anchor" href="#security">#</a>
+<h2>12. Security</h2>
+
+<p>While reasonable measures are taken to secure stored data, no system can guarantee absolute security.</p>
+
+<p>Server owners are responsible for safeguarding their own API keys.</p>
+</section>
+
+<section id="contact">
+<a class="anchor" href="#contact">#</a>
+<h2>13. Contact</h2>
+
+<p>Owner: Omena0</p>
+<p>Email: <a href="mailto:omena0mc@gmail.com">omena0mc@gmail.com</a></p>
+<p>Discord: @omena0</p>
+</section>
+
+</main>
+</div>
+
+<footer>
+Overseer Privacy Policy · Version 1 · Bot v38 · Made at v38
+</footer>
+
+<script>
+document.querySelectorAll('a.anchor').forEach(a => {
+  a.addEventListener('click', () => {
+    navigator.clipboard.writeText(window.location.origin + window.location.pathname + a.getAttribute('href'));
+  });
+});
+</script>
+
+</body>
+</html>
