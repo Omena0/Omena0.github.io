@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sun Tzu Quote Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0d10;
+      --panel: #12161b;
+      --panel-2: #181d23;
+      --border: #28303a;
+      --text: #f3f5f7;
+      --muted: #929ba7;
+      --accent: #7c9cff;
+      --accent-2: #5f80e8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font: 14px/1.4 Roboto, system-ui, sans-serif;
+    }
+    .app {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    h1 { margin: 0; font-size: 22px; letter-spacing: -.02em; }
+    header span { color: var(--muted); font-size: 13px; }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr);
+      gap: 18px;
+      align-items: start;
+    }
+    .preview {
+      position: sticky;
+      top: 20px;
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #07090b;
+      box-shadow: 0 14px 45px #0008;
+    }
+    .canvas-wrap {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #000;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--panel);
+      padding: 14px;
+    }
+    .panel h2 {
+      margin: 0 0 12px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    label.full { grid-column: 1 / -1; }
+    input, select, button {
+      width: 100%;
+      min-height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--panel-2);
+      color: var(--text);
+      padding: 8px 10px;
+      font: inherit;
+      outline: none;
+    }
+    textarea { resize: vertical; min-height: 72px; }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px #7c9cff22;
+    }
+    input[type="range"] {
+      min-height: 0;
+      padding: 0;
+      accent-color: var(--accent);
+    }
+    input[type="color"] { padding: 3px; }
+    .range-row {
+      display: grid;
+      grid-template-columns: 1fr 62px;
+      gap: 8px;
+      align-items: center;
+    }
+    .range-value {
+      text-align: center;
+      color: var(--text);
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 4px;
+    }
+    .check {
+      flex-direction: row;
+      align-items: center;
+      gap: 9px;
+      color: var(--text);
+      min-height: 38px;
+      padding: 0 2px;
+    }
+    .check input { width: auto; min-height: 0; }
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+    button {
+      cursor: pointer;
+      font-weight: 700;
+      transition: .15s ease;
+    }
+    button:hover { border-color: #465260; background: #20262e; }
+    button.primary {
+      background: var(--accent);
+      color: #08101f;
+      border-color: var(--accent);
+    }
+    button.primary:hover { background: var(--accent-2); border-color: var(--accent-2); }
+    .hint { margin-top: 9px; color: var(--muted); font-size: 11px; }
+    .error {
+      display: none;
+      margin-top: 10px;
+      color: #ff9b9b;
+      font-size: 12px;
+    }
+    @media (max-width: 800px) {
+      .app { padding: 12px; }
+      header { align-items: flex-start; flex-direction: column; gap: 3px; }
+      .layout { grid-template-columns: 1fr; }
+      .preview { position: static; order: -1; }
+    }
+    @media (max-width: 430px) {
+      .grid { grid-template-columns: 1fr; }
+      label.full { grid-column: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>Sun Tzu Quote Generator</h1>
+      <span>Make questionable historical quotations look authoritative.</span>
+    </header>
+
+    <div class="layout">
+      <section class="preview">
+        <div class="canvas-wrap"><canvas id="canvas"></canvas></div>
+        <div id="error" class="error"></div>
+      </section>
+
+      <section class="controls">
+        <div class="panel">
+          <h2>Background</h2>
+          <div class="grid">
+            <label class="check">
+              <input id="flip" type="checkbox">
+              Flip horizontally
+            </label>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Text 1</h2>
+          <div class="grid">
+            <label class="full">Text
+              <textarea id="text1">The supreme art of war is to make the enemy believe he is fighting a different war.</textarea>
+            </label>
+            <label>Font
+              <select id="font1"></select>
+            </label>
+            <label>Weight
+              <select id="weight1">
+                <option value="400">Regular</option>
+                <option value="500">Medium</option>
+                <option value="600">Semi-bold</option>
+                <option value="700" selected>Bold</option>
+                <option value="900">Black</option>
+              </select>
+            </label>
+            <label>Size
+              <div class="range-row">
+                <input id="size1" type="range" min="12" max="180" value="58">
+                <span id="size1v" class="range-value"></span>
+              </div>
+            </label>
+            <label>Rotation
+              <div class="range-row">
+                <input id="rotation1" type="range" min="-30" max="30" value="0">
+                <span id="rotation1v" class="range-value"></span>
+              </div>
+            </label>
+            <label>X position
+              <div class="range-row">
+                <input id="x1" type="range" min="0" max="100" value="67">
+                <span id="x1v" class="range-value"></span>
+              </div>
+            </label>
+            <label>Y position
+              <div class="range-row">
+                <input id="y1" type="range" min="0" max="100" value="32">
+                <span id="y1v" class="range-value"></span>
+              </div>
+            </label>
+            <label>Max width
+              <div class="range-row">
+                <input id="width1" type="range" min="10" max="100" value="48">
+                <span id="width1v" class="range-value"></span>
+              </div>
+            </label>
+            <label>Line height
+              <div class="range-row">
+                <input id="line1" type="range" min="80" max="160" value="100">
+                <span id="line1v" class="range-value"></span>
+              </div>
+            </label>
+            <label>Text color <input id="color1" type="color" value="#ffffff"></label>
+            <label>Stroke color <input id="stroke1" type="color" value="#000000"></label>
+            <label>Stroke width
+              <div class="range-row">
+                <input id="strokeWidth1" type="range" min="0" max="20" value="7">
+                <span id="strokeWidth1v" class="range-value"></span>
+              </div>
+            </label>
+            <label class="check">
+              <input id="uppercase1" type="checkbox" checked>
+              Uppercase
+            </label>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Text 2</h2>
+          <div class="grid">
+            <label class="full">Text
+              <textarea id="text2">— Sun Tzu</textarea>
+            </label>
+            <label>Font
+              <select id="font2"></select>
+            </label>
+            <label>Weight
+              <select id="weight2">
+                <option value="400">Regular</option>
+                <option value="500">Medium</option>
+                <option value="600">Semi-bold</option>
+                <option value="700" selected>Bold</option>
+                <option value="900">Black</option>
+              </select>
+            </label>
+            <label>Size
+              <div class="range-row">
+                <input id="size2" type="range" min="12" max="180" value="34">
+                <span id="size2v" class="range-value"></span>
+              </div>
+            </label>
+            <label>Rotation
+              <div class="range-row">
+                <input id="rotation2" type="range" min="-30" max="30" value="0">
+                <span id="rotation2v" class="range-value"></span>
+              </div>
+            </label>
+            <label>X position
+              <div class="range-row">
+                <input id="x2" type="range" min="0" max="100" value="80">
+                <span id="x2v" class="range-value"></span>
+              </div>
+            </label>
+            <label>Y position
+              <div class="range-row">
+                <input id="y2" type="range" min="0" max="100" value="65">
+                <span id="y2v" class="range-value"></span>
+              </div>
+            </label>
+            <label>Max width
+              <div class="range-row">
+                <input id="width2" type="range" min="10" max="100" value="42">
+                <span id="width2v" class="range-value"></span>
+              </div>
+            </label>
+            <label>Line height
+              <div class="range-row">
+                <input id="line2" type="range" min="80" max="160" value="100">
+                <span id="line2v" class="range-value"></span>
+              </div>
+            </label>
+            <label>Text color <input id="color2" type="color" value="#ffffff"></label>
+            <label>Stroke color <input id="stroke2" type="color" value="#000000"></label>
+            <label>Stroke width
+              <div class="range-row">
+                <input id="strokeWidth2" type="range" min="0" max="20" value="6">
+                <span id="strokeWidth2v" class="range-value"></span>
+              </div>
+            </label>
+            <label class="check">
+              <input id="uppercase2" type="checkbox" checked>
+              Uppercase
+            </label>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="actions">
+            <button id="reset">Reset</button>
+            <button id="download" class="primary">Download PNG</button>
+          </div>
+          <div class="hint">The generated PNG uses the original image resolution.</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+<script>
+(() => {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
+  img.src = '/sun_tzu.png';
+
+  const fonts = [
+    ['Anton', 'Anton'],
+    ['Bebas Neue', 'Bebas Neue'],
+    ['Oswald', 'Oswald'],
+    ['Roboto', 'Roboto']
+  ];
+
+  for (const id of ['font1', 'font2']) {
+    const select = document.getElementById(id);
+    for (const [value, label] of fonts) {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = label;
+      select.appendChild(option);
+    }
+    select.value = 'Anton';
+  }
+
+  const defaults = {
+    flip: false,
+    text1: 'The supreme art of war is to make the enemy believe he is fighting a different war.',
+    font1: 'Anton', weight1: '700', size1: 58, rotation1: 0, x1: 67, y1: 32,
+    width1: 48, line1: 100, color1: '#ffffff', stroke1: '#000000', strokeWidth1: 7, uppercase1: true,
+    text2: '— Sun Tzu',
+    font2: 'Anton', weight2: '700', size2: 34, rotation2: 0, x2: 80, y2: 65,
+    width2: 42, line2: 100, color2: '#ffffff', stroke2: '#000000', strokeWidth2: 6, uppercase2: true
+  };
+
+  function el(id) { return document.getElementById(id); }
+
+  function updateValue(id) {
+    const input = el(id);
+    const out = el(id + 'v');
+    if (!out) return;
+    const suffix = id.startsWith('x') || id.startsWith('y') || id.startsWith('width') ? '%' :
+                   id.startsWith('line') ? '%' :
+                   id.startsWith('rotation') ? '°' : 'px';
+    out.textContent = input.value + suffix;
+  }
+
+  function wrapText(text, maxWidth) {
+    const words = text.split(/\s+/);
+    const lines = [];
+    let line = '';
+    for (const word of words) {
+      const test = line ? line + ' ' + word : word;
+      if (ctx.measureText(test).width <= maxWidth || !line) {
+        line = test;
+      } else {
+        lines.push(line);
+        line = word;
+      }
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
+
+  function drawText(n) {
+    const text = el('text' + n).value;
+    if (!text.trim()) return;
+
+    const font = el('font' + n).value;
+    const weight = el('weight' + n).value;
+    const size = Number(el('size' + n).value);
+    const x = canvas.width * Number(el('x' + n).value) / 100;
+    const y = canvas.height * Number(el('y' + n).value) / 100;
+    const maxWidth = canvas.width * Number(el('width' + n).value) / 100;
+    const lineHeight = size * Number(el('line' + n).value) / 100;
+    const rotation = Number(el('rotation' + n).value) * Math.PI / 180;
+    const color = el('color' + n).value;
+    const stroke = el('stroke' + n).value;
+    const strokeWidth = Number(el('strokeWidth' + n).value);
+    const uppercase = el('uppercase' + n).checked;
+
+    const content = uppercase ? text.toUpperCase() : text;
+
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(rotation);
+    ctx.font = `${weight} ${size}px "${font}"`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+
+    const lines = wrapText(content, maxWidth);
+    const totalHeight = (lines.length - 1) * lineHeight;
+    lines.forEach((line, i) => {
+      const yy = i * lineHeight - totalHeight / 2;
+      if (strokeWidth > 0) {
+        ctx.lineWidth = strokeWidth;
+        ctx.strokeStyle = stroke;
+        ctx.strokeText(line, 0, yy);
+      }
+      ctx.fillStyle = color;
+      ctx.fillText(line, 0, yy);
+    });
+    ctx.restore();
+  }
+
+  function draw() {
+    if (!img.complete || !img.naturalWidth) return;
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.save();
+    if (el('flip').checked) {
+      ctx.translate(canvas.width, 0);
+      ctx.scale(-1, 1);
+    }
+    ctx.drawImage(img, 0, 0);
+    ctx.restore();
+
+    drawText(1);
+    drawText(2);
+  }
+
+  function bindAll() {
+    document.querySelectorAll('input, select, textarea').forEach(input => {
+      input.addEventListener('input', () => {
+        updateValue(input.id);
+        draw();
+      });
+      input.addEventListener('change', () => {
+        updateValue(input.id);
+        draw();
+      });
+      updateValue(input.id);
+    });
+  }
+
+  document.getElementById('download').addEventListener('click', () => {
+    const a = document.createElement('a');
+    a.download = 'sun-tzu-meme.png';
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+  });
+
+  document.getElementById('reset').addEventListener('click', () => {
+    for (const [id, value] of Object.entries(defaults)) {
+      const input = el(id);
+      if (!input) continue;
+      if (input.type === 'checkbox') input.checked = value;
+      else input.value = value;
+      updateValue(id);
+    }
+    draw();
+  });
+
+  img.addEventListener('load', draw);
+  img.addEventListener('error', () => {
+    const error = el('error');
+    error.style.display = 'block';
+    error.textContent = 'Could not load /sun_tzu.png. Put the image at the site root.';
+  });
+  document.fonts.ready.then(draw);
+  bindAll();
+})();
+</script>
+</body>
+</html>
