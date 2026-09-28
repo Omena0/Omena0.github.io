@@ -1,518 +1,578 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://omena0.github.io/</loc>
+    <loc>https://omena0.dev/</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge</loc>
+    <loc>https://omena0.dev/PyJavaBridge</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/</loc>
+    <loc>https://omena0.dev/PyJavaBridge/index.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/ability.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/ability.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/actionbardisplay.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/actionbardisplay.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/advancement.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/advancement.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/attribute.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/attribute.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/bank.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/bank.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/block.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/block.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/blockdisplay.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/blockdisplay.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/blocksnapshot.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/blocksnapshot.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/bookbuilder.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/bookbuilder.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/bossbar.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/bossbar.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/bossbardisplay.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/bossbardisplay.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/bridge.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/bridge.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/chat.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/chat.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/chunk.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/chunk.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/clientmod.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/clientmod.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/combat.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/combat.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/config.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/config.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/cooldown.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/cooldown.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/customitem.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/customitem.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/debugging.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/debugging.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/decorators.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/decorators.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/dialog.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/dialog.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/dungeon.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/dungeon.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/effect.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/effect.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/entity.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/entity.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/entitysubtypes.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/entitysubtypes.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/enums.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/enums.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/enumvalue.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/enumvalue.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/event.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/event.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/events_internal.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/events_internal.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/examples.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/examples.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/examples_command.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/examples_command.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/examples_dungeon.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/examples_dungeon.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/examples_spawn_protect.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/examples_spawn_protect.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/examples_tempban.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/examples_tempban.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/exceptions.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/exceptions.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/execution.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/execution.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/firework.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/firework.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/guild.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/guild.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/hologram.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/hologram.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/imagedisplay.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/imagedisplay.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/index.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/inventory.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/inventory.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/item.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/item.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/itembuilder.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/itembuilder.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/itemdisplay.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/itemdisplay.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/leaderboard.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/leaderboard.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/levels.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/levels.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/lifecycle.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/lifecycle.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/location.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/location.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/loottable.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/loottable.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/mana.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/mana.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/menu.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/menu.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/menuitem.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/menuitem.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/meshdisplay.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/meshdisplay.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/npc.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/npc.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/objective.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/objective.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/paginator.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/paginator.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/party.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/party.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/placeholder.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/placeholder.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/player.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/player.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/playerdatastore.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/playerdatastore.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/potion.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/potion.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/quest.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/quest.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/raycast.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/raycast.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/recipe.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/recipe.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/reflect.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/reflect.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/region.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/region.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/scheduler.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/scheduler.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/scoreboard.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/scoreboard.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/serialization.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/serialization.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/server.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/server.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/shop.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/shop.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/sidebar.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/sidebar.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/state.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/state.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/statemachine.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/statemachine.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/tablist.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/tablist.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/team.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/team.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/textcomponent.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/textcomponent.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/trade.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/trade.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/vector.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/vector.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/visualeffect.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/visualeffect.html</loc>
+    <loc>https://omena0.dev/PyJavaBridge/world.html</loc>
     <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://omena0.github.io/PyJavaBridge/world.html</loc>
-    <lastmod>2026-04-13</lastmod>
+    <loc>https://omena0.dev/index.html</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://omena0.dev/sun_tzu</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://omena0.dev/csv2moodlexml</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://omena0.dev/fr-docs/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://omena0.dev/fr-docs/index.html</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://omena0.dev/fr-docs/installation.html</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://omena0.dev/fr-docs/quickstart.html</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://omena0.dev/fr-docs/config.json.html</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://omena0.dev/fr-docs/showcase.html</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://omena0.dev/overseer/tos.html</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://omena0.dev/overseer/privacy.html</loc>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

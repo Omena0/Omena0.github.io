@@ -1,3 +1,3 @@
-# Omena0.github.io
+# omena0.dev
 
 website used mostly for static api
